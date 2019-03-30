@@ -32,6 +32,17 @@ public class UmsMemberReceiveAddressController {
         return new CommonResult().failed();
     }
 
+    @ApiOperation("微信小程序添加收货地址")
+    @RequestMapping(value = "/addForWXAPP", method = RequestMethod.POST)
+    @ResponseBody
+    public Object addForWXAPP( UmsMemberReceiveAddress address) {
+        int count = memberReceiveAddressService.addForWXAPP(address);
+        if(count>0){
+            return new CommonResult().success(count);
+        }
+        return new CommonResult().failed();
+    }
+
     @ApiOperation("删除收货地址")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -62,7 +73,15 @@ public class UmsMemberReceiveAddressController {
         return new CommonResult().success(addressList);
     }
 
-    @ApiOperation("显示所有收货地址")
+    @ApiOperation("微信小程序显示所有收货地址")
+    @RequestMapping(value = "/listForWXAPP", method = RequestMethod.GET)
+    @ResponseBody
+    public Object listForWXAPP(@RequestParam String openId) {
+        List<UmsMemberReceiveAddress> addressList = memberReceiveAddressService.listForWXAPP( openId );
+        return new CommonResult().success(addressList);
+    }
+
+    @ApiOperation("显示具体收货地址")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Object getItem(@PathVariable Long id) {

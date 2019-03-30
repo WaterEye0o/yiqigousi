@@ -53,6 +53,16 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         }
         return null;
     }
+    @Override
+    public UmsMember getMemberByWXAPPOpenId(String openid) {
+        UmsMemberExample example = new UmsMemberExample();
+        example.createCriteria().andOpenIdEqualTo(openid);
+        List<UmsMember> memberList = memberMapper.selectByExample(example);
+        if (!CollectionUtils.isEmpty(memberList)) {
+            return memberList.get(0);
+        }
+        return null;
+    }
 
     @Override
     public UmsMember getById(Long id) {
@@ -77,6 +87,39 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         UmsMember umsMember = new UmsMember();
         umsMember.setUsername(username);
         umsMember.setPhone(telephone);
+        umsMember.setPassword(passwordEncoder.encodePassword(password, null));
+        umsMember.setCreateTime(new Date());
+        umsMember.setStatus(1);
+        //获取默认会员等级并设置
+        UmsMemberLevelExample levelExample = new UmsMemberLevelExample();
+        levelExample.createCriteria().andDefaultStatusEqualTo(1);
+        List<UmsMemberLevel> memberLevelList = memberLevelMapper.selectByExample(levelExample);
+        if (!CollectionUtils.isEmpty(memberLevelList)) {
+            umsMember.setMemberLevelId(memberLevelList.get(0).getId());
+        }
+        memberMapper.insert(umsMember);
+        umsMember.setPassword(null);
+        return new CommonResult().success("注册成功",null);
+    }
+    @Override
+    public CommonResult registerForWXAPP(String username, String password, String telephone, String authCode, String openId) {
+        //验证验证码
+        if(!verifyAuthCode(authCode,telephone)){
+            return new CommonResult().failed("验证码错误");
+        }
+        //查询是否已有该用户
+        UmsMemberExample example = new UmsMemberExample();
+        example.createCriteria().andUsernameEqualTo(username);
+        example.or(example.createCriteria().andPhoneEqualTo(telephone));
+        List<UmsMember> umsMembers = memberMapper.selectByExample(example);
+        if (!CollectionUtils.isEmpty(umsMembers)) {
+            return new CommonResult().failed("该用户已经存在");
+        }
+        //没有该用户进行添加操作
+        UmsMember umsMember = new UmsMember();
+        umsMember.setUsername(username);
+        umsMember.setPhone(telephone);
+        umsMember.setOpenId(openId);
         umsMember.setPassword(passwordEncoder.encodePassword(password, null));
         umsMember.setCreateTime(new Date());
         umsMember.setStatus(1);

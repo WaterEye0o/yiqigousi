@@ -13,6 +13,10 @@ public interface UmsMemberReceiveAddressService {
      * 添加收货地址
      */
     int add(UmsMemberReceiveAddress address);
+    /**
+     * 微信小程序添加收货地址
+     */
+    int addForWXAPP(UmsMemberReceiveAddress address);
 
     /**
      * 删除收货地址
@@ -33,8 +37,19 @@ public interface UmsMemberReceiveAddressService {
     List<UmsMemberReceiveAddress> list();
 
     /**
+     * 返回微信小程序用户的收货地址
+     */
+    List<UmsMemberReceiveAddress> listForWXAPP(String id);
+
+    /**
      * 获取地址详情
      * @param id 地址id
      */
     UmsMemberReceiveAddress getItem(Long id);
+    /**
+     * 获取地址详情
+     * @param id 地址id
+     */
+    UmsMemberReceiveAddress getItemByOpenId(Long id,String openId);
+
 }

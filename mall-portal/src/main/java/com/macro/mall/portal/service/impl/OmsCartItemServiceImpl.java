@@ -53,6 +53,25 @@ public class OmsCartItemServiceImpl implements OmsCartItemService {
         return count;
     }
 
+    @Override
+    public int addByOpenId(OmsCartItem cartItem,String openId) {
+        int count;
+        UmsMember currentMember =memberService.getMemberByWXAPPOpenId(openId);
+        cartItem.setMemberId(currentMember.getId());
+        cartItem.setMemberNickname(currentMember.getNickname());
+        cartItem.setDeleteStatus(0);
+        OmsCartItem existCartItem = getCartItem(cartItem);
+        if (existCartItem == null) {
+            cartItem.setCreateDate(new Date());
+            count = cartItemMapper.insert(cartItem);
+        } else {
+            cartItem.setModifyDate(new Date());
+            existCartItem.setQuantity(existCartItem.getQuantity() + cartItem.getQuantity());
+            count = cartItemMapper.updateByPrimaryKey(existCartItem);
+        }
+        return count;
+    }
+
     /**
      * 根据会员id,商品id和规格获取购物车中商品
      */
@@ -87,9 +106,9 @@ public class OmsCartItemServiceImpl implements OmsCartItemService {
     public List<CartPromotionItem> listPromotion(Long memberId) {
         List<OmsCartItem> cartItemList = list(memberId);
         List<CartPromotionItem> cartPromotionItemList = new ArrayList<>();
-        if(!CollectionUtils.isEmpty(cartItemList)){
-            cartPromotionItemList = promotionService.calcCartPromotion(cartItemList);
-        }
+//        if(!CollectionUtils.isEmpty(cartItemList)){
+//            cartPromotionItemList = promotionService.calcCartPromotion(cartItemList);
+//        }
         return cartPromotionItemList;
     }
 

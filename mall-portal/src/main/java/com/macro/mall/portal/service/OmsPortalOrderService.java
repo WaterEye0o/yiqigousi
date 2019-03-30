@@ -1,9 +1,12 @@
 package com.macro.mall.portal.service;
 
+import com.macro.mall.model.OmsOrder;
 import com.macro.mall.portal.domain.CommonResult;
 import com.macro.mall.portal.domain.ConfirmOrderResult;
 import com.macro.mall.portal.domain.OrderParam;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * 前台订单管理Service
@@ -16,10 +19,15 @@ public interface OmsPortalOrderService {
     ConfirmOrderResult generateConfirmOrder();
 
     /**
+     * 根据用户购物车信息生成确认单信息
+     */
+    ConfirmOrderResult generateConfirmOrderForWXAPP(String openId);
+
+    /**
      * 根据提交信息生成订单
      */
     @Transactional
-    CommonResult generateOrder(OrderParam orderParam);
+    CommonResult generateOrder(OrderParam orderParam,String openId);
 
     /**
      * 支付成功后的回调
@@ -43,4 +51,8 @@ public interface OmsPortalOrderService {
      * 发送延迟消息取消订单
      */
     void sendDelayMessageCancelOrder(Long orderId);
+    /**
+     * 获取所有订单
+     */
+    List<OmsOrder> list(String openId, String orderStatus);
 }

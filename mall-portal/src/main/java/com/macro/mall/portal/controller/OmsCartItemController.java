@@ -38,11 +38,30 @@ public class OmsCartItemController {
         return new CommonResult().failed();
     }
 
+    @ApiOperation("添加商品到购物车")
+    @RequestMapping(value = "/addForWXAPP", method = RequestMethod.POST)
+    @ResponseBody
+    public Object addForWXAPP(OmsCartItem cartItem,@RequestParam String openId) {
+        int count = cartItemService.addByOpenId(cartItem,openId);
+        if (count > 0) {
+            return new CommonResult().success(count);
+        }
+        return new CommonResult().failed();
+    }
+
     @ApiOperation("获取某个会员的购物车列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public Object list() {
         List<OmsCartItem> cartItemList = cartItemService.list(memberService.getCurrentMember().getId());
+        return new CommonResult().success(cartItemList);
+    }
+
+    @ApiOperation("获取某个会员的购物车列表")
+    @RequestMapping(value = "/listForWXAPP", method = RequestMethod.GET)
+    @ResponseBody
+    public Object listForWXAPP(@RequestParam String openId) {
+        List<OmsCartItem> cartItemList = cartItemService.list(memberService.getMemberByWXAPPOpenId(openId).getId());
         return new CommonResult().success(cartItemList);
     }
 
@@ -58,8 +77,9 @@ public class OmsCartItemController {
     @RequestMapping(value = "/update/quantity", method = RequestMethod.GET)
     @ResponseBody
     public Object updateQuantity(@RequestParam Long id,
-                                 @RequestParam Integer quantity) {
-        int count = cartItemService.updateQuantity(id,memberService.getCurrentMember().getId(),quantity);
+                                 @RequestParam Integer quantity,
+                                 @RequestParam String openId) {
+        int count = cartItemService.updateQuantity(id,memberService.getMemberByWXAPPOpenId(openId).getId(),quantity);
         if (count > 0) {
             return new CommonResult().success(count);
         }
@@ -88,8 +108,10 @@ public class OmsCartItemController {
     @ApiOperation("删除购物车中的某个商品")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public Object delete(@RequestParam("ids") List<Long> ids) {
-        int count = cartItemService.delete(memberService.getCurrentMember().getId(),ids);
+    public Object delete(@RequestParam("ids") List<Long> ids,
+                         @RequestParam String openId
+                         ) {
+        int count = cartItemService.delete(memberService.getMemberByWXAPPOpenId(openId).getId(),ids);
         if (count > 0) {
             return new CommonResult().success(count);
         }

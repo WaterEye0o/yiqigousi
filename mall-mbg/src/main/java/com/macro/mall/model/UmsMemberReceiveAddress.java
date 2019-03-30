@@ -7,6 +7,8 @@ public class UmsMemberReceiveAddress implements Serializable {
 
     private Long memberId;
 
+    private String openId;
+
     /**
      * 收货人名称
      *
@@ -66,6 +68,15 @@ public class UmsMemberReceiveAddress implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
     }
 
     public Long getMemberId() {
@@ -147,6 +158,7 @@ public class UmsMemberReceiveAddress implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", openId=").append(openId);
         sb.append(", memberId=").append(memberId);
         sb.append(", name=").append(name);
         sb.append(", phoneNumber=").append(phoneNumber);
@@ -160,4 +172,5 @@ public class UmsMemberReceiveAddress implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
 }

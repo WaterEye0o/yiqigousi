@@ -19,6 +19,12 @@ public interface OmsCartItemService {
     int add(OmsCartItem cartItem);
 
     /**
+     * 查询购物车中是否包含该商品，有增加数量，无添加到购物车
+     */
+    @Transactional
+    int addByOpenId(OmsCartItem cartItem,String openId);
+
+    /**
      * 根据会员编号获取购物车列表
      */
     List<OmsCartItem> list(Long memberId);

@@ -127,6 +127,13 @@ public class UmsMember implements Serializable {
      */
     private Integer historyIntegration;
 
+    /**
+     * 微信openid
+     *
+     * @mbggenerated
+     */
+    private String openId;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -281,6 +288,14 @@ public class UmsMember implements Serializable {
         this.historyIntegration = historyIntegration;
     }
 
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -306,6 +321,7 @@ public class UmsMember implements Serializable {
         sb.append(", growth=").append(growth);
         sb.append(", luckeyCount=").append(luckeyCount);
         sb.append(", historyIntegration=").append(historyIntegration);
+        sb.append(", openId=").append(openId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

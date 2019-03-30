@@ -30,6 +30,13 @@ public class UmsMemberReceiveAddressServiceImpl implements UmsMemberReceiveAddre
     }
 
     @Override
+    public int addForWXAPP(UmsMemberReceiveAddress address) {
+        UmsMember currentMember = memberService.getMemberByWXAPPOpenId(address.getOpenId());
+        address.setMemberId(currentMember.getId());
+        return addressMapper.insert(address);
+    }
+
+    @Override
     public int delete(Long id) {
         UmsMember currentMember = memberService.getCurrentMember();
         UmsMemberReceiveAddressExample example = new UmsMemberReceiveAddressExample();
@@ -55,8 +62,27 @@ public class UmsMemberReceiveAddressServiceImpl implements UmsMemberReceiveAddre
     }
 
     @Override
+    public List<UmsMemberReceiveAddress> listForWXAPP(String openId) {
+        UmsMember currentMember = memberService.getMemberByWXAPPOpenId(openId);
+        UmsMemberReceiveAddressExample example = new UmsMemberReceiveAddressExample();
+        example.createCriteria().andMemberIdEqualTo(currentMember.getId());
+        return addressMapper.selectByExample(example);
+    }
+
+    @Override
     public UmsMemberReceiveAddress getItem(Long id) {
         UmsMember currentMember = memberService.getCurrentMember();
+        UmsMemberReceiveAddressExample example = new UmsMemberReceiveAddressExample();
+        example.createCriteria().andMemberIdEqualTo(currentMember.getId()).andIdEqualTo(id);
+        List<UmsMemberReceiveAddress> addressList = addressMapper.selectByExample(example);
+        if(!CollectionUtils.isEmpty(addressList)){
+            return addressList.get(0);
+        }
+        return null;
+    }
+    @Override
+    public UmsMemberReceiveAddress getItemByOpenId(Long id,String openId) {
+        UmsMember currentMember = memberService.getMemberByWXAPPOpenId(openId);
         UmsMemberReceiveAddressExample example = new UmsMemberReceiveAddressExample();
         example.createCriteria().andMemberIdEqualTo(currentMember.getId()).andIdEqualTo(id);
         List<UmsMemberReceiveAddress> addressList = addressMapper.selectByExample(example);

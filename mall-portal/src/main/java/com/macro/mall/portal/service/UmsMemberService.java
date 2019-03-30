@@ -15,6 +15,11 @@ public interface UmsMemberService {
     UmsMember getByUsername(String username);
 
     /**
+     * 根据微信小程序openid获取会员并返回
+     */
+    UmsMember getMemberByWXAPPOpenId(String  openid);
+
+    /**
      * 根据会员编号获取会员
      */
     UmsMember getById(Long id);
@@ -24,6 +29,12 @@ public interface UmsMemberService {
      */
     @Transactional
     CommonResult register(String username, String password, String telephone, String authCode);
+
+    /**
+     * 微信小程序用户注册
+     */
+    @Transactional
+    CommonResult registerForWXAPP(String username, String password, String telephone, String authCode, String openid);
 
     /**
      * 生成验证码

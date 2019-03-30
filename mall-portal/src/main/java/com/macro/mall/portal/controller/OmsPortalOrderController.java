@@ -28,12 +28,35 @@ public class OmsPortalOrderController {
         return new CommonResult().success(confirmOrderResult);
     }
 
-    @ApiOperation("根据购物车信息生成订单")
-    @RequestMapping(value = "/generateOrder",method = RequestMethod.POST)
+    @ApiOperation("微信小程序根据购物车信息生成确认单信息")
+    @RequestMapping(value = "/generateConfirmOrderForWXAPP",method = RequestMethod.POST)
     @ResponseBody
-    public Object generateOrder(@RequestBody OrderParam orderParam){
-        return portalOrderService.generateOrder(orderParam);
+    public Object generateConfirmOrderForWXAPP(@RequestParam String openId){
+        ConfirmOrderResult confirmOrderResult = portalOrderService.generateConfirmOrderForWXAPP(openId);
+        return new CommonResult().success(confirmOrderResult);
     }
+
+//    @ApiOperation("根据购物车信息生成订单")
+//    @RequestMapping(value = "/generateOrder",method = RequestMethod.POST)
+//    @ResponseBody
+//    public Object generateOrder(@RequestBody OrderParam orderParam){
+//        return portalOrderService.generateOrder(orderParam);
+//    }
+
+    @ApiOperation("根据购物车信息生成订单")
+    @RequestMapping(value = "/generateOrderForWXAPP",method = RequestMethod.POST)
+    @ResponseBody
+    public Object generateOrderForWXAPP(OrderParam orderParam,@RequestParam String openId){
+        return portalOrderService.generateOrder(orderParam,openId);
+    }
+    @ApiOperation("微信小程序获取全部订单")
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @ResponseBody
+    public Object list(@RequestParam String openId,
+                       @RequestParam(value = "status", required = false) String status){
+        return new CommonResult().success(portalOrderService.list(openId,status));
+    }
+
     @ApiOperation("支付成功的回调")
     @RequestMapping(value = "/paySuccess",method = RequestMethod.POST)
     @ResponseBody

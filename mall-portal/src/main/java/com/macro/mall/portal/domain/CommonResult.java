@@ -15,7 +15,7 @@ public class CommonResult {
     //操作失败
     public static final int FAILED = 500;
     private int code;
-    private String message;
+    private String msg;
     private Object data;
 
     /**
@@ -25,7 +25,7 @@ public class CommonResult {
      */
     public CommonResult success(Object data) {
         this.code = SUCCESS;
-        this.message = "操作成功";
+        this.msg = "操作成功";
         this.data = data;
         return this;
     }
@@ -33,9 +33,9 @@ public class CommonResult {
     /**
      * 普通成功返回
      */
-    public CommonResult success(String message,Object data) {
+    public CommonResult success(String msg,Object data) {
         this.code = SUCCESS;
-        this.message = message;
+        this.msg = msg;
         this.data = data;
         return this;
     }
@@ -51,7 +51,7 @@ public class CommonResult {
         result.put("pageNum", pageInfo.getNumber());
         result.put("list", pageInfo.getContent());
         this.code = SUCCESS;
-        this.message = "操作成功";
+        this.msg = "操作成功";
         this.data = result;
         return this;
     }
@@ -61,13 +61,13 @@ public class CommonResult {
      */
     public CommonResult failed() {
         this.code = FAILED;
-        this.message = "操作失败";
+        this.msg = "操作失败";
         return this;
     }
 
-    public CommonResult failed(String message){
+    public CommonResult failed(String msg){
         this.code = FAILED;
-        this.message = message;
+        this.msg = msg;
         return this;
     }
 
@@ -79,12 +79,12 @@ public class CommonResult {
         this.code = code;
     }
 
-    public String getMessage() {
-        return message;
+    public String getmsg() {
+        return msg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setmsg(String msg) {
+        this.msg = msg;
     }
 
     public Object getData() {
