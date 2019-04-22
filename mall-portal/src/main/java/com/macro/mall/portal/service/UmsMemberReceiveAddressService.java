@@ -16,7 +16,7 @@ public interface UmsMemberReceiveAddressService {
     /**
      * 微信小程序添加收货地址
      */
-    int addForWXAPP(UmsMemberReceiveAddress address);
+    int addForWXAPP(UmsMemberReceiveAddress address,String openId);
 
     /**
      * 删除收货地址

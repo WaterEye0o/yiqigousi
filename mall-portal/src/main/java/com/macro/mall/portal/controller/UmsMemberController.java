@@ -46,8 +46,12 @@ public class UmsMemberController {
                                    @RequestParam String username,
                                    @RequestParam String password,
                                    @RequestParam String telephone,
+                                   @RequestParam String recommendId,
                                    @RequestParam String authCode) {
-        return memberService.registerForWXAPP(username, password, telephone, authCode,openId);
+        if (StringUtils.isBlank(recommendId)) {
+            return new CommonResult().failed("必须要有邀请人才能注册");
+        }
+        return memberService.registerForWXAPP(username, password, telephone, authCode,openId,recommendId);
     }
 
     @ApiOperation("注册")

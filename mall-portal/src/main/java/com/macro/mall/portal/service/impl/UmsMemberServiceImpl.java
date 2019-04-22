@@ -102,7 +102,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         return new CommonResult().success("注册成功",null);
     }
     @Override
-    public CommonResult registerForWXAPP(String username, String password, String telephone, String authCode, String openId) {
+    public CommonResult registerForWXAPP(String username, String password, String telephone, String authCode, String openId, String recommendId) {
         //验证验证码
         if(!verifyAuthCode(authCode,telephone)){
             return new CommonResult().failed("验证码错误");
@@ -111,6 +111,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         UmsMemberExample example = new UmsMemberExample();
         example.createCriteria().andUsernameEqualTo(username);
         example.or(example.createCriteria().andPhoneEqualTo(telephone));
+        example.or(example.createCriteria().andOpenIdEqualTo(openId));
         List<UmsMember> umsMembers = memberMapper.selectByExample(example);
         if (!CollectionUtils.isEmpty(umsMembers)) {
             return new CommonResult().failed("该用户已经存在");
@@ -123,6 +124,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         umsMember.setPassword(passwordEncoder.encodePassword(password, null));
         umsMember.setCreateTime(new Date());
         umsMember.setStatus(1);
+        umsMember.setRecommendMemberId(recommendId);
         //获取默认会员等级并设置
         UmsMemberLevelExample levelExample = new UmsMemberLevelExample();
         levelExample.createCriteria().andDefaultStatusEqualTo(1);

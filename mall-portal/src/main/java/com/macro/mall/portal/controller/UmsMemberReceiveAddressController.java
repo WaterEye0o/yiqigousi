@@ -35,8 +35,8 @@ public class UmsMemberReceiveAddressController {
     @ApiOperation("微信小程序添加收货地址")
     @RequestMapping(value = "/addForWXAPP", method = RequestMethod.POST)
     @ResponseBody
-    public Object addForWXAPP( UmsMemberReceiveAddress address) {
-        int count = memberReceiveAddressService.addForWXAPP(address);
+    public Object addForWXAPP( UmsMemberReceiveAddress address,@RequestParam String openId) {
+        int count = memberReceiveAddressService.addForWXAPP(address,openId);
         if(count>0){
             return new CommonResult().success(count);
         }

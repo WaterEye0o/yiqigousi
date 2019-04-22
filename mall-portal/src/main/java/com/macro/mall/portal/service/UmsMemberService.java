@@ -34,7 +34,7 @@ public interface UmsMemberService {
      * 微信小程序用户注册
      */
     @Transactional
-    CommonResult registerForWXAPP(String username, String password, String telephone, String authCode, String openid);
+    CommonResult registerForWXAPP(String username, String password, String telephone, String authCode, String openid,String recommendId);
 
     /**
      * 生成验证码

@@ -134,6 +134,13 @@ public class UmsMember implements Serializable {
      */
     private String openId;
 
+    /**
+     * 推荐人id
+     *
+     * @mbggenerated
+     */
+    private String recommendMemberId;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -296,6 +303,14 @@ public class UmsMember implements Serializable {
         this.openId = openId;
     }
 
+    public String getRecommendMemberId() {
+        return recommendMemberId;
+    }
+
+    public void setRecommendMemberId(String recommendMemberId) {
+        this.recommendMemberId = recommendMemberId;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -322,6 +337,7 @@ public class UmsMember implements Serializable {
         sb.append(", luckeyCount=").append(luckeyCount);
         sb.append(", historyIntegration=").append(historyIntegration);
         sb.append(", openId=").append(openId);
+        sb.append(", recommendMemberId=").append(recommendMemberId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

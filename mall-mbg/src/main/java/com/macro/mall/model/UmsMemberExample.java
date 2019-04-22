@@ -1421,6 +1421,76 @@ public class UmsMemberExample {
             addCriterion("open_id not between", value1, value2, "openId");
             return (Criteria) this;
         }
+
+        public Criteria andRecommendMemberIdIsNull() {
+            addCriterion("recommend_member_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendMemberIdIsNotNull() {
+            addCriterion("recommend_member_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendMemberIdEqualTo(String value) {
+            addCriterion("recommend_member_id =", value, "recommendMemberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendMemberIdNotEqualTo(String value) {
+            addCriterion("recommend_member_id <>", value, "recommendMemberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendMemberIdGreaterThan(String value) {
+            addCriterion("recommend_member_id >", value, "recommendMemberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendMemberIdGreaterThanOrEqualTo(String value) {
+            addCriterion("recommend_member_id >=", value, "recommendMemberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendMemberIdLessThan(String value) {
+            addCriterion("recommend_member_id <", value, "recommendMemberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendMemberIdLessThanOrEqualTo(String value) {
+            addCriterion("recommend_member_id <=", value, "recommendMemberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendMemberIdLike(String value) {
+            addCriterion("recommend_member_id like", value, "recommendMemberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendMemberIdNotLike(String value) {
+            addCriterion("recommend_member_id not like", value, "recommendMemberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendMemberIdIn(List<String> values) {
+            addCriterion("recommend_member_id in", values, "recommendMemberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendMemberIdNotIn(List<String> values) {
+            addCriterion("recommend_member_id not in", values, "recommendMemberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendMemberIdBetween(String value1, String value2) {
+            addCriterion("recommend_member_id between", value1, value2, "recommendMemberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendMemberIdNotBetween(String value1, String value2) {
+            addCriterion("recommend_member_id not between", value1, value2, "recommendMemberId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

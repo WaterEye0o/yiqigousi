@@ -1891,6 +1891,7 @@ CREATE TABLE `ums_member` (
   `luckey_count` int(11) DEFAULT NULL COMMENT '剩余抽奖次数',
   `history_integration` int(11) DEFAULT NULL COMMENT '历史积分数量',
   `open_id` varchar(64) DEFAULT NULL COMMENT '微信openid',
+  `recommend_member_id` varchar(64) DEFAULT NULL COMMENT '推荐者id',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_username` (`username`),
   UNIQUE KEY `idx_phone` (`phone`)

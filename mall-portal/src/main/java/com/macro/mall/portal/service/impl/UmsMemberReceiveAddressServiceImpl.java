@@ -30,8 +30,8 @@ public class UmsMemberReceiveAddressServiceImpl implements UmsMemberReceiveAddre
     }
 
     @Override
-    public int addForWXAPP(UmsMemberReceiveAddress address) {
-        UmsMember currentMember = memberService.getMemberByWXAPPOpenId(address.getOpenId());
+    public int addForWXAPP(UmsMemberReceiveAddress address,String openId) {
+        UmsMember currentMember = memberService.getMemberByWXAPPOpenId(openId);
         address.setMemberId(currentMember.getId());
         return addressMapper.insert(address);
     }
