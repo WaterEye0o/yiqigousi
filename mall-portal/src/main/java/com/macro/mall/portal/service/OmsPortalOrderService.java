@@ -21,7 +21,7 @@ public interface OmsPortalOrderService {
     /**
      * 根据用户购物车信息生成确认单信息
      */
-    ConfirmOrderResult generateConfirmOrderForWXAPP(String openId);
+    ConfirmOrderResult generateConfirmOrderForWXAPP(String openId,List<Long> goodsIds);
 
     /**
      * 根据提交信息生成订单

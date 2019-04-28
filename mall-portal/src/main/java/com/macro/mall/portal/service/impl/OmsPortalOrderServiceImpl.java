@@ -82,11 +82,11 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
     }
 
     @Override
-    public ConfirmOrderResult generateConfirmOrderForWXAPP(String openId) {
+    public ConfirmOrderResult generateConfirmOrderForWXAPP(String openId,List<Long> goodsIds) {
         ConfirmOrderResult result = new ConfirmOrderResult();
         //获取购物车信息
         UmsMember currentMember = memberService.getMemberByWXAPPOpenId(openId);
-        List<CartPromotionItem> cartPromotionItemList = cartItemService.listPromotion(currentMember.getId());
+        List<CartPromotionItem> cartPromotionItemList = cartItemService.listPromotionByGoodsIds(currentMember.getId(),goodsIds);
         result.setCartPromotionItemList(cartPromotionItemList);
         //获取用户收货地址列表
         List<UmsMemberReceiveAddress> memberReceiveAddressList = memberReceiveAddressService.listForWXAPP(openId);

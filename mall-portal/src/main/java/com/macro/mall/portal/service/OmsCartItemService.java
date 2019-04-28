@@ -30,9 +30,20 @@ public interface OmsCartItemService {
     List<OmsCartItem> list(Long memberId);
 
     /**
+     * 根据会员编号获取购物车列表
+     */
+    List<OmsCartItem> listByGoodsIds(Long memberId, List<Long> goodsIds);
+
+    /**
      * 获取包含促销活动信息的购物车列表
      */
     List<CartPromotionItem> listPromotion(Long memberId);
+
+
+    /**
+     * 获取包含促销活动信息的购物车列表
+     */
+    List<CartPromotionItem> listPromotionByGoodsIds(Long memberId,List<Long> goodsIds);
 
     /**
      * 修改某个购物车商品的数量

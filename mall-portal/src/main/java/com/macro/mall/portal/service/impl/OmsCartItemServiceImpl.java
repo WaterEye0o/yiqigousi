@@ -103,12 +103,29 @@ public class OmsCartItemServiceImpl implements OmsCartItemService {
     }
 
     @Override
+    public List<OmsCartItem> listByGoodsIds(Long memberId, List<Long> goodsIds) {
+        OmsCartItemExample example = new OmsCartItemExample();
+        example.createCriteria().andMemberIdEqualTo(memberId).andProductIdIn(goodsIds).andDeleteStatusEqualTo(0);
+        return cartItemMapper.selectByExample(example);
+    }
+
+    @Override
     public List<CartPromotionItem> listPromotion(Long memberId) {
         List<OmsCartItem> cartItemList = list(memberId);
         List<CartPromotionItem> cartPromotionItemList = new ArrayList<>();
 //        if(!CollectionUtils.isEmpty(cartItemList)){
 //            cartPromotionItemList = promotionService.calcCartPromotion(cartItemList);
 //        }
+        return cartPromotionItemList;
+    }
+
+    @Override
+    public List<CartPromotionItem> listPromotionByGoodsIds(Long memberId, List<Long> goodsIds) {
+        List<OmsCartItem> cartItemList = listByGoodsIds(memberId,goodsIds);
+        List<CartPromotionItem> cartPromotionItemList = new ArrayList<>();
+        if(!CollectionUtils.isEmpty(cartItemList)){
+            cartPromotionItemList = promotionService.calcCartPromotion(cartItemList);
+        }
         return cartPromotionItemList;
     }
 

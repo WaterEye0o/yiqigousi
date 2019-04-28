@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 订单管理Controller
  * Created by macro on 2018/8/30.
@@ -31,8 +33,9 @@ public class OmsPortalOrderController {
     @ApiOperation("微信小程序根据购物车信息生成确认单信息")
     @RequestMapping(value = "/generateConfirmOrderForWXAPP",method = RequestMethod.POST)
     @ResponseBody
-    public Object generateConfirmOrderForWXAPP(@RequestParam String openId){
-        ConfirmOrderResult confirmOrderResult = portalOrderService.generateConfirmOrderForWXAPP(openId);
+    public Object generateConfirmOrderForWXAPP(@RequestParam String openId,
+                                               @RequestParam List<Long> goodsIds){
+        ConfirmOrderResult confirmOrderResult = portalOrderService.generateConfirmOrderForWXAPP(openId,goodsIds);
         return new CommonResult().success(confirmOrderResult);
     }
 
