@@ -30,6 +30,11 @@ public interface OmsPortalOrderService {
     CommonResult generateOrder(OrderParam orderParam,String openId);
 
     /**
+     * 根据用户购物车信息生成确认单信息
+     */
+    CommonResult generateOrderForWXAPP(OrderParam orderParam,String openId, List<Long> goodsIds);
+
+    /**
      * 支付成功后的回调
      */
     @Transactional

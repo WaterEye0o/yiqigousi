@@ -107,4 +107,11 @@ public class OmsOrderController {
         }
         return new CommonResult().failed();
     }
+
+    @ApiOperation("完成支付")
+    @RequestMapping(value = "/update/paySuccess", method = RequestMethod.POST)
+    @ResponseBody
+    public Object paySuccess(@RequestParam Long orderId) {
+        return orderService.paySuccess(orderId);
+    }
 }

@@ -691,6 +691,7 @@ INSERT INTO `pms_brand` VALUES ('49', '七匹狼', 'S', '200', '1', '1', '77', '
 INSERT INTO `pms_brand` VALUES ('50', '海澜之家', 'H', '200', '1', '1', '66', '300', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/99d3279f1029d32b929343b09d3c72de_222_222.jpg', '', '海澜之家的故事');
 INSERT INTO `pms_brand` VALUES ('51', '苹果', 'A', '200', '1', '1', '55', '200', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', null, '苹果的故事');
 INSERT INTO `pms_brand` VALUES ('58', 'NIKE', 'N', '0', '1', '1', '33', '100', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/timg (51).jpg', '', 'NIKE的故事');
+INSERT INTO `pms_brand` VALUES ('59', 'FOREVER酵素', 'F', '0', '1', '1', '33', '100', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/timg (51).jpg', '', 'FOREVER酵素的故事');
 
 -- ----------------------------
 -- Table structure for pms_comment
@@ -1100,6 +1101,7 @@ INSERT INTO `pms_product_category` VALUES ('2', '0', '手机数码', '0', '100',
 INSERT INTO `pms_product_category` VALUES ('3', '0', '家用电器', '0', '100', '件', '1', '1', '1', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/subject_cate_jiadian.png', '家用电器', '家用电器');
 INSERT INTO `pms_product_category` VALUES ('4', '0', '家具家装', '0', '100', '件', '1', '1', '1', null, '家具家装', '家具家装');
 INSERT INTO `pms_product_category` VALUES ('5', '0', '汽车用品', '0', '100', '件', '1', '1', '1', null, '汽车用品', '汽车用品');
+INSERT INTO `pms_product_category` VALUES ('6', '0', '保健品', '0', '100', '件', '1', '1', '1', null, '保健品', '保健品');
 INSERT INTO `pms_product_category` VALUES ('7', '1', '外套', '1', '100', '件', '1', '1', '0', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/product_cate_waitao.png', '外套', '外套');
 INSERT INTO `pms_product_category` VALUES ('8', '1', 'T恤', '1', '100', '件', '1', '1', '0', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/product_cate_tshirt.png', 'T恤', 'T恤');
 INSERT INTO `pms_product_category` VALUES ('9', '1', '休闲裤', '1', '100', '件', '1', '1', '0', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/product_cate_xiuxianku.png', '休闲裤', '休闲裤');
@@ -1131,6 +1133,7 @@ INSERT INTO `pms_product_category` VALUES ('48', '5', '全新整车', '1', '0', 
 INSERT INTO `pms_product_category` VALUES ('49', '5', '车载电器', '1', '0', '', '1', '1', '0', '', '', '');
 INSERT INTO `pms_product_category` VALUES ('50', '5', '维修保养', '1', '0', '', '1', '1', '0', '', '', '');
 INSERT INTO `pms_product_category` VALUES ('51', '5', '汽车装饰', '1', '0', '', '1', '1', '0', '', '', '');
+INSERT INTO `pms_product_category` VALUES ('52', '6', '酵素', '1', '0', '', '1', '1', '0', '', '', '');
 
 -- ----------------------------
 -- Table structure for pms_product_category_attribute_relation
@@ -1655,6 +1658,7 @@ INSERT INTO `sms_home_brand` VALUES ('36', '4', '格力', '1', '0');
 INSERT INTO `sms_home_brand` VALUES ('37', '5', '方太', '1', '0');
 INSERT INTO `sms_home_brand` VALUES ('38', '1', '万和', '1', '0');
 INSERT INTO `sms_home_brand` VALUES ('39', '21', 'OPPO', '1', '0');
+INSERT INTO `sms_home_brand` VALUES ('40', '59', 'FOREVER酵素', '1', '200');
 
 -- ----------------------------
 -- Table structure for sms_home_new_product

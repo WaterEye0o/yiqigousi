@@ -150,4 +150,18 @@ public class OmsOrderServiceImpl implements OmsOrderService {
         orderOperateHistoryMapper.insert(history);
         return count;
     }
+
+    @Override
+    public CommonResult paySuccess(Long orderId) {
+        //修改订单支付状态
+        OmsOrder order = new OmsOrder();
+        order.setId(orderId);
+        order.setStatus(1);
+        order.setPaymentTime(new Date());
+        orderMapper.updateByPrimaryKeySelective(order);
+        //恢复所有下单商品的锁定库存，扣减真实库存
+        OmsOrderDetail orderDetail = orderDao.getDetail(orderId);
+        int count = orderDao.updateSkuStock(orderDetail.getOrderItemList());
+        return new CommonResult().success("支付成功");
+    }
 }

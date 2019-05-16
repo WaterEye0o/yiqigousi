@@ -49,8 +49,8 @@ public class OmsPortalOrderController {
     @ApiOperation("根据购物车信息生成订单")
     @RequestMapping(value = "/generateOrderForWXAPP",method = RequestMethod.POST)
     @ResponseBody
-    public Object generateOrderForWXAPP(OrderParam orderParam,@RequestParam String openId){
-        return portalOrderService.generateOrder(orderParam,openId);
+    public Object generateOrderForWXAPP(OrderParam orderParam,@RequestParam String openId,@RequestParam List<Long> goodsIds){
+        return portalOrderService.generateOrderForWXAPP(orderParam,openId,goodsIds);
     }
     @ApiOperation("微信小程序获取全部订单")
     @RequestMapping(value = "/list",method = RequestMethod.GET)

@@ -55,4 +55,10 @@ public interface OmsOrderService {
      */
     @Transactional
     int updateNote(Long id, String note, Integer status);
+
+    /**
+     * 订单支付成功
+     */
+    @Transactional
+    CommonResult paySuccess(Long orderId);
 }
